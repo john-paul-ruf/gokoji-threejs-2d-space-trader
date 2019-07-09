@@ -1,6 +1,6 @@
 class MainMenu extends Container {
-  constructor(owner) {
-    super(owner);
+  constructor(program) {
+    super(program);
   }
 
   init() {
@@ -38,14 +38,13 @@ class MainMenu extends Container {
     this.btnStart.borderWidth = 1;
     this.btnStart.dropShadow = true;
 
-    this.drawables.push(this.lblHeader);
-    this.drawables.push(this.btnStart);
+    this.lblHeader.init();
+    this.btnStart.init();
 
     this.clickables.push(this.btnStart);
 
     this.gameStartTransition = function () {
       this.container.visible = false;
-      Asteroids.gameInProgress = true;
     };
 
     this.btnStart.subscribe(this.gameStartTransition);

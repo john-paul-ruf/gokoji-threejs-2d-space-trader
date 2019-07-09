@@ -1,6 +1,6 @@
-class Button extends Clickable {
+class Label extends Drawable{
   constructor(container) {
-    super(program);
+    super();
 
     this.textSize = 14;
 
@@ -8,10 +8,10 @@ class Button extends Clickable {
     this.textColor = undefined;
 
     this.container = container;
+    this.alignment = 'left';
   }
 
   init() {
-    super.init();
     this.domElement = document.createElement('div');
     this.domElement .style.position = 'absolute';
     this.domElement .style.width = this.width;

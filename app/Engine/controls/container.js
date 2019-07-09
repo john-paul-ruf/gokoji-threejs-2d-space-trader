@@ -1,9 +1,8 @@
 class Container extends Drawable {
-  constructor(owner) {
+  constructor() {
     super();
     this.drawables = [];
     this.clickables = [];
-    this.owner = owner;
   }
 
   init() {
