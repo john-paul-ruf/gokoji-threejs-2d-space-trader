@@ -18,7 +18,7 @@ class MainMenu extends Container {
     this.lblHeader.y = 140;
     this.lblHeader.x = -100;
     this.lblHeader.width = 400;
-    this.lblHeader.height = 50;
+    this.lblHeader.height = 75;
     this.lblHeader.text = "2D Space Trader";
     this.lblHeader.fontSize = 50;
     this.lblHeader.alignment = 'center';

@@ -13,11 +13,11 @@ class Clickable extends Drawable {
       return true;
     }
     return false;
-  };
+  }
 
   subscribe(fn) {
     this.clickHandlers.push(fn);
-  };
+  }
 
   unsubscribe(fn) {
     this.clickHandlers = this.handlers.filter(
@@ -27,7 +27,7 @@ class Clickable extends Drawable {
         }
       }
     );
-  };
+  }
 
   onClick() {
 
@@ -36,5 +36,5 @@ class Clickable extends Drawable {
         item.call(this);
       }
     });
-  };
+  }
 };
