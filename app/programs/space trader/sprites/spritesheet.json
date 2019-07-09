@@ -1,0 +1,152 @@
+{"frames": {
+
+"ships/1/scout_1.png":
+{
+	"frame": {"x":1,"y":1,"w":26,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":0,"w":26,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/1/scout_2.gif":
+{
+	"frame": {"x":1,"y":35,"w":26,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":0,"w":26,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/1/scout_3.gif":
+{
+	"frame": {"x":1,"y":69,"w":26,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":0,"w":26,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/1/scout_4.gif":
+{
+	"frame": {"x":1,"y":103,"w":26,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":0,"w":26,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/1/scout_5.gif":
+{
+	"frame": {"x":1,"y":137,"w":26,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":0,"w":26,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/2/trader_1.png":
+{
+	"frame": {"x":1,"y":171,"w":26,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":0,"w":26,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/2/trader_2.gif":
+{
+	"frame": {"x":1,"y":205,"w":26,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":0,"w":26,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/2/trader_3.gif":
+{
+	"frame": {"x":1,"y":239,"w":26,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":0,"w":26,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/2/trader_4.gif":
+{
+	"frame": {"x":1,"y":273,"w":26,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":0,"w":26,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/2/trader_5.gif":
+{
+	"frame": {"x":1,"y":307,"w":26,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":0,"w":26,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/3/warbird_1.gif":
+{
+	"frame": {"x":1,"y":341,"w":24,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":0,"w":24,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/3/warbird_2.gif":
+{
+	"frame": {"x":1,"y":375,"w":24,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":0,"w":24,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/3/warbird_3.gif":
+{
+	"frame": {"x":1,"y":409,"w":24,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":0,"w":24,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/3/warbird_4.gif":
+{
+	"frame": {"x":1,"y":443,"w":24,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":0,"w":24,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+},
+"ships/3/warbird_5.gif":
+{
+	"frame": {"x":1,"y":409,"w":24,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":0,"w":24,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"anchor": {"x":0,"y":0}
+}},
+"animations": {
+	"ships/1/scout": ["ships/1/scout_1.png","ships/1/scout_2.gif","ships/1/scout_3.gif","ships/1/scout_4.gif","ships/1/scout_5.gif"],
+	"ships/2/trader": ["ships/2/trader_1.png","ships/2/trader_2.gif","ships/2/trader_3.gif","ships/2/trader_4.gif","ships/2/trader_5.gif"],
+	"ships/3/warbird": ["ships/3/warbird_1.gif","ships/3/warbird_2.gif","ships/3/warbird_3.gif","ships/3/warbird_4.gif","ships/3/warbird_5.gif"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "spritesheet.png",
+	"format": "RGBA8888",
+	"size": {"w":28,"h":476},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:becc11b73dc2b42417c85a672e6ee259:ffa17639f492e12f95cc2718c65107ab:729adc6043343cfda41c447ce8f464d6$"
+}
+}

@@ -1,0 +1,85 @@
+{
+  "Title": "",
+  "Start": "",
+  "Intro": "",
+  "HeroImage": "",
+  "StartingShipKey": "",
+  "HelpOn": "",
+  "sectorSize": 4000,
+
+  "ships": [
+    {
+      "key": "scout",
+      "sprite": "ships/1/scout",
+      "speed": 3,
+      "turnAngleSpeed": 2
+    },
+    {
+      "key": "warbird",
+      "sprite": "ships/3/warbird",
+      "speed": 1,
+      "turnAngleSpeed": 1
+    },
+    {
+      "key": "trader",
+      "sprite": "ships/2/trader",
+      "speed": 2,
+      "turnAngleSpeed": 1.5
+    }
+  ],
+
+  "impedments": [
+    {
+      "key": "",
+      "mame": "",
+      "image": "",
+      "functionKeys": []
+    },
+    {
+      "key": "",
+      "mame": "",
+      "image": "",
+      "functionKeys": []
+    },
+    {
+      "key": "",
+      "mame": "",
+      "image": "",
+      "functionKeys": []
+    }
+  ],
+
+  "mineables": [
+    {
+      "key": "",
+      "image": "",
+      "resourceKeys": [ "" ],
+      "minResourceAmount": "",
+      "maxResourceAmount": ""
+    }
+  ],
+
+  "projectiles": [
+    {
+      "type": "",
+      "RoF": "",
+      "damageMin": "",
+      "damageMax": "",
+      "cooldown": "",
+      "image": "",
+      "speed": "",
+      "hitImage": "",
+      "missImage": ""
+    }
+  ],
+
+  "resources": [
+    {
+      "key": "",
+      "color": "",
+      "name": "",
+      "minValue": "",
+      "maxValue": ""
+    }
+  ]
+}
