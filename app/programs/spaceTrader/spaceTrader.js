@@ -19,7 +19,7 @@ class gameModel {
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(window.innerWidth - 50, window.innerHeight - 50);
 
-    this.camera.position.set(200, 200, 500);
+    this.camera.position.set(100, 100, 400);
 
     this.mainMenu = new MainMenu(this);
     this.mainMenu.init();

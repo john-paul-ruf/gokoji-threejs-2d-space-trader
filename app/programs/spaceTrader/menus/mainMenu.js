@@ -13,7 +13,6 @@ class MainMenu extends Container {
     this.borderColor = Config.menuBorders;
     this.rounding = 10;
     this.dropShadow = true;
-    super.init();
 
     this.lblHeader = new Label(this);
     this.lblHeader.textColor = Config.menuText;
@@ -22,7 +21,7 @@ class MainMenu extends Container {
     this.lblHeader.width = 400;
     this.lblHeader.height = 50;
     this.lblHeader.text = "2D Space Trader";
-    this.lblHeader.textSize = 26;
+    this.lblHeader.fontSize = 26;
     this.lblHeader.alignment = 'center';
 
     this.btnStart = new Button(this);
@@ -36,8 +35,11 @@ class MainMenu extends Container {
     this.btnStart.rounding = 10;
     this.btnStart.borderColor = Config.buttonBorders;
     this.btnStart.borderWidth = 1;
+    this.lblHeader.fontSize = 26;
     this.btnStart.dropShadow = true;
 
+
+    super.init();
     this.lblHeader.init();
     this.btnStart.init();
 

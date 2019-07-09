@@ -38,6 +38,7 @@ class Drawable {
       this.y,
       0
     );
+
     this.cube = outerCube;
     window.program.scene.add(outerCube);
   }
