@@ -34,8 +34,8 @@ class Drawable {
     outerCube.add(cube);
 
     outerCube.position.set(
-      this.relativeX,
-      this.relativeY,
+      this.x,
+      this.y,
       0
     );
     this.cube = outerCube;

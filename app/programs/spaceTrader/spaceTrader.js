@@ -9,7 +9,7 @@ class gameModel {
 
     this.gameElement = this.document.getElementById("game");
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x000000);
+    this.scene.background = new THREE.Color(0xAAAAAA);
 
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
 
@@ -19,7 +19,7 @@ class gameModel {
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(window.innerWidth - 50, window.innerHeight - 50);
 
-    this.camera.position.set(100, 100, 175);
+    this.camera.position.set(200, 200, 500);
 
     this.mainMenu = new MainMenu(this);
     this.mainMenu.init();

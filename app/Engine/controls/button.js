@@ -12,14 +12,7 @@ class Button extends Clickable {
 
   init() {
     super.init();
-    this.domElement = document.createElement('div');
-    this.domElement .style.position = 'absolute';
-    this.domElement .style.width = this.width;
-    this.domElement .style.height = this.height;
-    this.domElement .style.backgroundColor = this.color;
-    this.domElement .innerHTML = this.text;
-    this.domElement .style.top = this.relativeY + 'px';
-    this.domElement .style.left = this.relativeX + 'px';
-    document.body.appendChild(this.domElement);
+    this.sprite = TextHelper.createTextSprite(this);
+    window.program.scene.add(this.sprite);
   }
 }

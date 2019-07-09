@@ -4,8 +4,6 @@ class MainMenu extends Container {
   }
 
   init() {
-    super.init();
-
     this.color = Config.menuBackground;
     this.x = 50;
     this.y = 50;
@@ -15,6 +13,7 @@ class MainMenu extends Container {
     this.borderColor = Config.menuBorders;
     this.rounding = 10;
     this.dropShadow = true;
+    super.init();
 
     this.lblHeader = new Label(this);
     this.lblHeader.textColor = Config.menuText;
