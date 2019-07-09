@@ -2,7 +2,7 @@ class Config {
   constructor() { }
 }
 
-Config.menuBackground = 0x343434;
+Config.menuBackground = 0xBBBBBB;
 Config.menuBorders = 0x00FF00;
 Config.menuText = 0x00DD00;
 Config.buttonText = 0x00FF00;

@@ -15,11 +15,11 @@ class Label extends Drawable {
     this.sprite = TextHelper.createTextSprite(this);
 
     this.sprite.position.set(
-      this.relativeX,
-      this.relativeY,
+      this.x,
+      this.y,
       0
     );
 
-    window.program.scene.add(this.sprite);
+    this.container.cube.add(this.sprite);
   }
 }

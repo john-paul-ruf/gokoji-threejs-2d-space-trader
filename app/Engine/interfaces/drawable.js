@@ -6,7 +6,6 @@ class Drawable {
     this.height = 100;
     this.width = 100;
     this.borderWidth = 0;
-    this.rounding = 0;
     this.dropShadow = false;
     this.dropShadowOffset = 5;
     this.color = undefined;
@@ -42,13 +41,4 @@ class Drawable {
     this.cube = outerCube;
     window.program.scene.add(outerCube);
   }
-
-  get relativeX() {
-    return this.container ? this.container.relativeX + this.x : this.x;
-  }
-
-  get relativeY() {
-    return this.container ? this.container.relativeY + this.y : this.y;
-  }
-
 };

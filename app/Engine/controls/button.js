@@ -15,11 +15,11 @@ class Button extends Clickable {
     this.sprite = TextHelper.createTextSprite(this);
 
     this.sprite.position.set(
-      this.relativeX + this.width / 2,
-      this.relativeY + this.height / 2,
+      0,
+      0,
       0
     );
 
-    window.program.scene.add(this.sprite);
+    this.cube.add(this.sprite);
   }
 }
