@@ -11,16 +11,10 @@ TextHelper.createTextSprite = function (textElement) {
   var context = canvas.getContext('2d');
   context.font = "Bold " + textElement.fontSize + "px " + fontface;
 
-  // get size data (height depends only on font size)
-  var metrics = context.measureText(textElement.text);
-  var textWidth = metrics.width;
+  context.fillStyle = { r: 255, g: 100, b: 100, a: 1 };
 
-  // text color
-  context.fillStyle = { r: 255, g: 100, b: 100, a: 0.8 };
+  context.fillText(textElement.text, 0, textElement.fontSize);
 
-  context.fillText(textElement.text, textWidth, textElement.fontSize);
-
-  // canvas contents will be used for a texture
   var texture = new THREE.Texture(canvas);
   texture.needsUpdate = true;
 
