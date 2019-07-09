@@ -4,6 +4,7 @@ class MainMenu extends Container {
   }
 
   init() {
+    super.init();
 
     this.color = Config.menuBackground;
     this.x = 50;
