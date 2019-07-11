@@ -1,4 +1,4 @@
-class gameModel {
+class GameModel {
   constructor() {
 
   }
@@ -11,8 +11,8 @@ class gameModel {
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0x00000);
 
-    this.camera = new THREE.OrthographicCamera(- window.innerWidth / 2, window.innerWidth / 2, window.innerHeight / 2, - window.innerHeight / 2, -1, 10);
-    this.camera.position.z = 10;
+    GameModel.camera = new THREE.OrthographicCamera(- window.innerWidth / 2, window.innerWidth / 2, window.innerHeight / 2, - window.innerHeight / 2, -1, 10);
+    GameModel.camera.position.z = 10;
 
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -27,7 +27,7 @@ class gameModel {
     };
 
     var render = function (game) {
-        game.renderer.render(game.scene, game.camera);
+      game.renderer.render(game.scene, GameModel.camera);
     };
 
     this.renderer.setAnimationLoop(() => {

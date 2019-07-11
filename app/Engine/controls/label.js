@@ -12,14 +12,17 @@ class Label extends Drawable {
   }
 
   init() {
-    this.sprite = TextHelper.createTextSprite(this);
-
-    this.sprite.position.set(
-      this.x,
-      this.y,
-      0
+    this.borderWidth = 0;
+    super.init();
+    this.text = TextHelper.createTextSprite(this);
+    this.text.setParent(this.cube);
+    this.text.updatePosition({ x: this.x, y: this.y, z: 0 }, GameModel.camera);
+    this.cube.material.transparent = true;
+    this.cube.material.opacity = 0;
+    _.forEach(this.cube.children, c => {
+      c.material.transparent = true;
+      c.material.opacity = 0;
+      }
     );
-
-    this.container.cube.add(this.sprite);
   }
 }

@@ -15,9 +15,9 @@ class MainMenu extends Container {
 
     this.lblHeader = new Label(this);
     this.lblHeader.textColor = Config.menuText;
-    this.lblHeader.y = 140;
-    this.lblHeader.x = -100;
-    this.lblHeader.width = 600;
+    this.lblHeader.y = 220;
+    this.lblHeader.x = 0;
+    this.lblHeader.width = 200;
     this.lblHeader.height = 75;
     this.lblHeader.text = "2D Space Trader";
     this.lblHeader.fontSize = 72;

@@ -12,14 +12,9 @@ class Button extends Clickable {
 
   init() {
     super.init();
-    this.sprite = TextHelper.createTextSprite(this);
-
-    this.sprite.position.set(
-      0,
-      0,
-      0
-    );
-
-    this.cube.add(this.sprite);
+    this.text = TextHelper.createTextSprite(this);
+    this.text.setParent(this.cube);
+    this.text.updatePosition({ x: this.x, y: this.y, z: 0 }, GameModel.camera);
+    this.cube.text = this.text;
   }
 }
