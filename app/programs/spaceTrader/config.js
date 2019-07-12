@@ -11,3 +11,6 @@ Config.buttonBorders = 0x00FF00;
 
 Config.starColor = 0xFFFFFF;
 Config.starBorder = 0x0000FF;
+
+Config.mineableColor = 0x444444;
+Config.mineableBorder  = 0x999999;
