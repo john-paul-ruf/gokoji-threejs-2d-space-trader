@@ -50,6 +50,8 @@ class Ship extends Drawable {
       this.cube.matrix.multiply(rotObjectMatrix);
       this.cube.rotation.setFromRotationMatrix(this.cube.matrix);
 
+
+      window.program.camera.position.set(this.cube.position.x, this.cube.position.y, this.cube.position.z);
     }
   }
 

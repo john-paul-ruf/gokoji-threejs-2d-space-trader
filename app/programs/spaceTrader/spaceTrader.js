@@ -64,10 +64,30 @@ class GameModel {
     this.playerShip = Ship.assemble({
       "key": "scout",
       "sprite": "ships/1/scout",
-      "speed": 3,
-      "turnAngleSpeed": 2
+      "speed": 5,
+      "turnAngleSpeed": 0.5
     });
 
     this.playerShip.init();
+
+    const randomizeStar = function(star) {
+      star.y = Math.floor(Math.random() * Math.floor(window.innerHeight));
+      star.x = Math.floor(Math.random() * Math.floor(window.innerWidth));
+      star.z = 0;
+    };
+
+    this.stars = [];
+    const starAmount = 50;
+    for (let i = 0; i < starAmount; i++) {
+      let star = new Drawable();
+      star.width = 5;
+      star.height = 5;
+      star.borderWidth = 2;
+      star.color = Config.starColor;
+      star.borderColor = Config.starBorder;
+      randomizeStar(star);
+      star.init();
+      this.stars.push(star);
+    }
   }
 }
