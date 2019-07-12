@@ -27,7 +27,7 @@ class Ship extends Drawable {
 
       if (angle > 0.05) {
         if (angle < Math.PI) {
-          this.forward = this.forward.rotateAround(new THREE.Vector2(0,0), this.turnAngleSpeed * this.dt);
+          this.forward = this.forward.rotateAround(new THREE.Vector2(0, 0), this.turnAngleSpeed * this.dt);
         } else {
           this.forward = this.forward.rotateAround(new THREE.Vector2(0, 0), -this.turnAngleSpeed * this.dt);
         }
@@ -44,7 +44,12 @@ class Ship extends Drawable {
         this.cube.position.set(x, y, 0);
       }
 
-      this.rotation = this.forward.angle();
+
+      let rotObjectMatrix = new THREE.Matrix4();
+      rotObjectMatrix.makeRotationAxis(this.rotationAxis, this.forward.angle() * this.dt);
+      this.cube.matrix.multiply(rotObjectMatrix);
+      this.cube.rotation.setFromRotationMatrix(this.cube.matrix);
+
     }
   }
 
@@ -60,6 +65,7 @@ class Ship extends Drawable {
     ship.turnSpeed = ship.speed;
     ship.forward = new THREE.Vector2(0, 16);
     ship.target = new THREE.Vector2(0, 16);
+    ship.rotationAxis = new THREE.Vector3(0, 0, 1);
     return ship;
 
   }
