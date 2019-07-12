@@ -60,24 +60,14 @@ class GameModel {
   }
 
   onGameStart() {
-
-    this.playerShip = Ship.assemble({
-      "key": "scout",
-      "sprite": "ships/1/scout",
-      "speed": 5,
-      "turnAngleSpeed": 0.5
-    });
-
-    this.playerShip.init();
-
     const randomizeStar = function(star) {
-      star.y = Math.floor(Math.random() * Math.floor(window.innerHeight));
-      star.x = Math.floor(Math.random() * Math.floor(window.innerWidth));
+      star.y = Math.random() * (2500 - -2500) + -2500;
+      star.x = Math.random() * (2500 - -2500) + -2500;
       star.z = 0;
     };
 
     this.stars = [];
-    const starAmount = 50;
+    const starAmount = 500;
     for (let i = 0; i < starAmount; i++) {
       let star = new Drawable();
       star.width = 5;
@@ -89,5 +79,16 @@ class GameModel {
       star.init();
       this.stars.push(star);
     }
+
+
+
+    this.playerShip = Ship.assemble({
+      "key": "scout",
+      "sprite": "ships/1/scout",
+      "speed": 5,
+      "turnAngleSpeed": 0.5
+    });
+
+    this.playerShip.init();
   }
 }
