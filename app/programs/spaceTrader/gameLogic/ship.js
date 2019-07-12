@@ -20,7 +20,7 @@ class Ship extends Drawable {
       let direction = new THREE.Vector2(this.target.x - current.x, this.target.y - current.y);
       direction = direction.normalize();
       let angle = direction.angle() - this.forward.angle();
-
+      let rotationAngle = angle;
       if (angle < 0) {
         angle += Math.PI * 2;
       }
@@ -46,7 +46,7 @@ class Ship extends Drawable {
 
 
       let rotObjectMatrix = new THREE.Matrix4();
-      rotObjectMatrix.makeRotationAxis(this.rotationAxis, this.forward.angle() * this.dt);
+      rotObjectMatrix.makeRotationAxis(this.rotationAxis, rotationAngle * this.dt);
       this.cube.matrix.multiply(rotObjectMatrix);
       this.cube.rotation.setFromRotationMatrix(this.cube.matrix);
 
