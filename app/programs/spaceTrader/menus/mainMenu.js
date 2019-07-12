@@ -49,14 +49,17 @@ class MainMenu extends Container {
     this.gameStartTransition = function () {
       window.program.scene.remove(this.container.cube);
 
-      _.forEach(this.container.drawables, d => {
-        window.program.scene.remove(d.cube);
+      _.forEach(this.container.drawables,
+        d => {
+          window.program.scene.remove(d.cube);
 
-        if (d.text) {
-          let parent = window.document.getElementById("game");
-          parent.removeChild(d.text.element);
-        }
-      })
+          if (d.text) {
+            let parent = window.document.getElementById("game");
+            parent.removeChild(d.text.element);
+          }
+        });
+
+      window.program.onGameStart();
     };
 
     this.btnStart.subscribe(this.gameStartTransition);

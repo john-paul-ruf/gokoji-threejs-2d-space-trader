@@ -1,22 +1,24 @@
-class Ship {
+class Ship extends Drawable {
   constructor() {
-
+    super();
   }
 
-  fire() {
-
+  init() {
+    this.width = 32;
+    this.height = 32;
+    super.init();
   }
 
-  move(dt) {
+  move() {
 
-    const target = new Victor(this.sprite.targetX, this.sprite.targetY);
-    const current = new Victor(this.sprite.x, this.sprite.y);
-    const distance = current.distance(target);
+    const current = new THREE.Vector2(this.cube.position.x, this.cube.position.y);
+    const distance = current.distanceTo(this.target);
 
 
     if (distance > 10) {
-      let direction = new Victor(target.x - current.x, target.y - current.y);
-      direction = direction.norm();
+      this.dt += 0.0005;
+      let direction = new THREE.Vector2(this.target.x - current.x, this.target.y - current.y);
+      direction = direction.normalize();
       let angle = direction.angle() - this.forward.angle();
 
       if (angle < 0) {
@@ -25,21 +27,30 @@ class Ship {
 
       if (angle > 0.05) {
         if (angle < Math.PI) {
-          this.forward = this.forward.rotate(this.turnAngleSpeed * dt);
+          this.forward = this.forward.rotateAround(new THREE.Vector2(0,0), this.turnAngleSpeed * this.dt);
         } else {
-          this.forward = this.forward.rotate(-this.turnAngleSpeed * dt);
+          this.forward = this.forward.rotateAround(new THREE.Vector2(0, 0), -this.turnAngleSpeed * this.dt);
         }
 
-        this.sprite.x = this.sprite.x + this.forward.x * this.turnSpeed * dt;
-        this.sprite.y = this.sprite.y + this.forward.y * this.turnSpeed * dt;
+        let x = this.cube.position.x + this.forward.x * this.turnSpeed * this.dt;
+        let y = this.cube.position.y + this.forward.y * this.turnSpeed * this.dt;
+
+        this.cube.position.set(x, y, 0);
 
       } else {
-        this.sprite.x = this.sprite.x + this.forward.x * this.speed * dt;
-        this.sprite.y = this.sprite.y + this.forward.y * this.speed * dt;
+        let x = this.cube.position.x + this.forward.x * this.speed * this.dt;
+        let y = this.cube.position.y + this.forward.y * this.speed * this.dt;
+
+        this.cube.position.set(x, y, 0);
       }
 
-      this.sprite.rotation = this.forward.angle();
+      this.rotation = this.forward.angle();
     }
+  }
+
+  setTarget(vector) {
+    this.target = vector;
+    this.dt = 0;
   }
 
   static assemble(data) {
@@ -47,9 +58,8 @@ class Ship {
     const ship = new Ship();
     Object.assign(ship, data);
     ship.turnSpeed = ship.speed;
-    ship.forward = new Victor(0, 16);
-    ship.sprite.targetX = 0;
-    ship.sprite.targetY = 0;
+    ship.forward = new THREE.Vector2(0, 16);
+    ship.target = new THREE.Vector2(0, 16);
     return ship;
 
   }

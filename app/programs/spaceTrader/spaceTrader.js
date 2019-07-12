@@ -33,7 +33,9 @@ class GameModel {
     this.gameElement.appendChild(this.renderer.domElement);
 
     var update = function (game) {
-
+      if (window.program.playerShip) {
+        window.program.playerShip.move();
+      }
     };
 
     var render = function (game) {
@@ -51,5 +53,21 @@ class GameModel {
     mouse3D.unproject(window.program.camera);
     this.lastClick = mouse3D;
     _.forEach(this.clickables, c => { c.onClick(); });
+
+    if (window.program.playerShip) {
+      window.program.playerShip.setTarget(mouse3D);
+    }
+  }
+
+  onGameStart() {
+
+    this.playerShip = Ship.assemble({
+      "key": "scout",
+      "sprite": "ships/1/scout",
+      "speed": 3,
+      "turnAngleSpeed": 2
+    });
+
+    this.playerShip.init();
   }
 }
