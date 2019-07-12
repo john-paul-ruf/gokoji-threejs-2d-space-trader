@@ -5,11 +5,18 @@ class Clickable extends Drawable {
   }
 
   clicked() {
+    let screenCords = _.clone(window.program.lastClick);
+    screenCords = new THREE.Vector2(screenCords.x, screenCords.y);
 
-    const canvasCoord = MathHelper.projectWorldToCanvas(window.cam.canvas, createVector(mouseX, mouseY, 0));
+    let hitBox = new THREE.Box2();
+    let points = [];
+    _.forEach(this.cube.geometry.vertices, v => {
+      points.push(this.cube.localToWorld(new THREE.Vector3(v.x, v.y, v.xz)));
+    });
 
-    if (canvasCoord.x > this.relativeX && canvasCoord.x < this.relativeX + this.width
-      && canvasCoord.y > this.relativeY && canvasCoord.y < this.relativeY + this.height) {
+    hitBox.setFromPoints(points);
+
+    if (hitBox.containsPoint(screenCords)) {
       return true;
     }
     return false;

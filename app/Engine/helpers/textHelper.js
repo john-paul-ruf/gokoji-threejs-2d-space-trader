@@ -32,7 +32,7 @@ TextHelper.createTextSprite = function (textElement) {
       if (parent) {
         this.position.copy(this.parent.position);
       }
-      var coords2d = this.get2DCoords(this.position, GameModel.camera);
+      var coords2d = this.get2DCoords(this.position, window.program.camera);
       this.element.style.left = coords2d.x + 'px';
       this.element.style.top = coords2d.y + 'px';
     },
