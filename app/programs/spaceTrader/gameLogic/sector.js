@@ -35,7 +35,6 @@ class Sector extends Container {
   }
 
   move() {
-
-
+    _.forEach(this.minables, m => m.move());
   }
 }

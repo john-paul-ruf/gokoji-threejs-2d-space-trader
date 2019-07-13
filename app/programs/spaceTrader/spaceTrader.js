@@ -33,6 +33,10 @@ class GameModel {
     this.gameElement.appendChild(this.renderer.domElement);
 
     var update = function (game) {
+      if (window.program.currentSector) {
+        window.program.currentSector.move();
+      }
+
       if (window.program.playerShip) {
         window.program.playerShip.move();
       }
