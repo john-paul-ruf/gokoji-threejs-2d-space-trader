@@ -11,7 +11,7 @@ class Clickable extends Drawable {
     let hitBox = new THREE.Box2();
     let points = [];
     _.forEach(this.cube.geometry.vertices, v => {
-      points.push(this.cube.localToWorld(new THREE.Vector3(v.x, v.y, v.xz)));
+      points.push(this.cube.localToWorld(new THREE.Vector3(v.x, v.y, v.z)));
     });
 
     hitBox.setFromPoints(points);

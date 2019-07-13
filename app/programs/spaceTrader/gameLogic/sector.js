@@ -25,16 +25,32 @@ class Sector extends Container {
     }
 
     this.minables = [];
-    const minableAmount = 20;
+    const minableAmount = 70;
     for (let i = 0; i < minableAmount; i++) {
       let mineable = new Mineable();
       mineable.init();
       this.minables.push(mineable);
       this.drawables.push(mineable);
     }
+
+    setInterval(this.doChecks.bind(this), 300);
   }
 
   move() {
-    _.forEach(this.minables, m => m.move());
+    _.forEach(this.minables, m => {
+      m.move();
+    });
+  }
+
+  doChecks() {
+    _.forEach(this.minables, m => {
+      m.doBoundsCheck(2500, -2500);
+    });
+
+    _.forEach(this.minables, m => {
+      _.forEach(this.minables, t => {
+        m.doIntersect(t);
+      });
+    });
   }
 }
