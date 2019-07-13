@@ -4,7 +4,7 @@ class Mineable extends Drawable {
   }
 
   init() {
-
+   
     this.height = 64;
     this.width = 64;
 
@@ -15,15 +15,17 @@ class Mineable extends Drawable {
     this.randomizeMinable();
 
     this.rotationAxis = new THREE.Vector3(0, 0, 1);
-    this.rotationAngle = Math.random() * (0.02 - -0.02) + -0.02;
+    this.rotationAngle = MathHelper.random(0.05, -0.05);
+    this.colisionTimer = 0;
+
     super.init();
   }
 
   randomizeMinable() {
-    this.y = Math.random() * (2500 - -2500) + -2500;
-    this.x = Math.random() * (2500 - -2500) + -2500;
+    this.y = MathHelper.random(2500, -2500);
+    this.x = MathHelper.random(2500, -2500);
     this.z = 0;
-    this.speed = Math.random() * (5 - -3) + -3;
+    this.speed = MathHelper.random(5, 3);
     this.direction = new THREE.Vector3(Math.random(), Math.random(), 0);
   }
 
@@ -35,10 +37,14 @@ class Mineable extends Drawable {
     this.cube.matrix.multiply(rotObjectMatrix);
     this.cube.rotation.setFromRotationMatrix(this.cube.matrix);
     this.cube.position.set(x, y, 0);
+
+    if (this.colisionTimer > 0) {
+      this.colisionTimer --;
+    }
   }
 
   doIntersect(object) {
-    if (this !== object) {
+    if (this !== object && this.colisionTimer >= 0 && object.colisionTimer >= 0) {
 
       const localPoints = [];
       let localBox = new THREE.Box2();
@@ -49,37 +55,43 @@ class Mineable extends Drawable {
       localBox.setFromPoints(localPoints);
 
       const objectPoints = [];
-      let objectBox = new THREE.Box2();
       _.forEach(object.cube.geometry.vertices,
         v => {
           objectPoints.push(object.cube.localToWorld(new THREE.Vector3(v.x, v.y, v.z)));
         });
-      objectBox.setFromPoints(objectPoints);
 
-      if (localBox.intersectsBox(objectBox)) {
-        //FROM: https://www.gamasutra.com/view/feature/131424/pool_hall_lessons_fast_accurate_.php?page=3
-        let myCenter = this.cube.localToWorld(new THREE.Vector3(this.cube.position.x, this.cube.position.y, this.cube.position.z));
-        let objectCenter = this.cube.localToWorld(new THREE.Vector3(object.cube.position.x, object.cube.position.y, object.cube.position.z));
+      _.forEach(objectPoints, p => {
+        if (localBox.containsPoint(p)) {
+          //FROM: https://www.gamasutra.com/view/feature/131424/pool_hall_lessons_fast_accurate_.php?page=3
+          let myCenter = this.cube.localToWorld(new THREE.Vector3(this.cube.position.x, this.cube.position.y, this.cube.position.z));
+          let objectCenter = this.cube.localToWorld(new THREE.Vector3(object.cube.position.x, object.cube.position.y, object.cube.position.z));
 
-        let n = myCenter.sub(objectCenter);
-        n.normalize();
-        let a1 = this.direction.clone().multiply(n);
-        let a2 = object.direction.clone().multiply(n);
-        let t1 = a1.sub(a2);
-        t1.multiplyScalar(2);
-        t1.divideScalar(1); //making mass static for now
-        let optimizedP = t1.normalize();
+          let n = myCenter.sub(objectCenter);
+          n.normalize();
+          let a1 = this.direction.clone().multiply(n);
+          let a2 = object.direction.clone().multiply(n);
+          let t1 = a1.sub(a2);
+          t1.multiplyScalar(2);
+          let optimizedP = t1.normalize();
 
-        let t2 = this.direction.clone().sub(optimizedP.clone());
-        t2.multiplyScalar(-1);
-        t2.multiply(n);
-        this.direction = t2.normalize();
+          let t2 = this.direction.clone().sub(optimizedP.clone());
+          t2.multiply(n);
 
-        let t3 = this.direction.clone().add(optimizedP.clone());
-        t3.multiplyScalar(-1);
-        t3.multiply(n);
-        this.direction = t3.normalize();
-      }
+
+          let t3 = this.direction.clone().add(optimizedP.clone());
+          t3.multiply(n);
+
+          object.direction = t3.normalize();
+          this.direction = t2.normalize();
+
+          let tempSpeed = this.speed;
+          this.speed = object.speed;
+          object.speed = tempSpeed;
+
+          this.colisionTimer = Config.colisionTimeoutMax;
+          this.object.colisionTimer = Config.colisionTimeoutMax;
+        }
+      });
     }
   }
 

@@ -14,8 +14,8 @@ class Star extends Drawable {
   }
 
   randomizeStar() {
-    this.y = Math.random() * (2500 - -2500) + -2500;
-    this.x = Math.random() * (2500 - -2500) + -2500;
+    this.y = MathHelper.random(2500, -2500);
+    this.x = MathHelper.random(2500, -2500);
     this.z = 0;
   };
 }

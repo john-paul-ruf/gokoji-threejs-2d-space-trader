@@ -2,6 +2,8 @@ class Config {
   constructor() { }
 }
 
+Config.colisionTimeoutMax = 10000;
+
 Config.menuBackground = 0x000000;
 Config.menuBorders = 0x00FF00;
 Config.menuText = 0x00FF00;
