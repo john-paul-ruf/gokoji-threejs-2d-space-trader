@@ -15,7 +15,7 @@ class Mineable extends Drawable {
     this.randomizeMinable();
 
     this.rotationAxis = new THREE.Vector3(0, 0, 1);
-    this.rotationAngle = 0.01;
+    this.rotationAngle = Math.random() * (0.02 - -0.02) + -0.02;
     super.init();
   }
 

@@ -33,7 +33,7 @@ class Sector extends Container {
       this.drawables.push(mineable);
     }
 
-    setInterval(this.doChecks.bind(this), 300);
+    setInterval(this.doChecks.bind(this), 100);
   }
 
   move() {
