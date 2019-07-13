@@ -67,16 +67,16 @@ class Mineable extends Drawable {
         let a2 = object.direction.clone().multiply(n);
         let t1 = a1.sub(a2);
         t1.multiplyScalar(2);
-        t1.divideScalar(this.width + object.width); //exchanging size for mass
-        let optimizedP = t1;
+        t1.divideScalar(1); //making mass static for now
+        let optimizedP = t1.normalize();
 
         let t2 = this.direction.clone().sub(optimizedP.clone());
-        t2.multiplyScalar(object.width);
+        t2.multiplyScalar(-1);
         t2.multiply(n);
         this.direction = t2.normalize();
 
         let t3 = this.direction.clone().add(optimizedP.clone());
-        t3.multiplyScalar(object.width);
+        t3.multiplyScalar(-1);
         t3.multiply(n);
         this.direction = t3.normalize();
       }
