@@ -23,7 +23,7 @@ class Mineable extends Drawable {
     this.y = Math.random() * (2500 - -2500) + -2500;
     this.x = Math.random() * (2500 - -2500) + -2500;
     this.z = 0;
-    this.speed = Math.random() * (3 - -1) + -1;
+    this.speed = Math.random() * (5 - -3) + -3;
     this.direction = new THREE.Vector3(Math.random(), Math.random(), 0);
   }
 
@@ -39,6 +39,7 @@ class Mineable extends Drawable {
 
   doIntersect(object) {
     if (this !== object) {
+
       const localPoints = [];
       let localBox = new THREE.Box2();
       _.forEach(this.cube.geometry.vertices,
@@ -56,8 +57,28 @@ class Mineable extends Drawable {
       objectBox.setFromPoints(objectPoints);
 
       if (localBox.intersectsBox(objectBox)) {
-        this.direction.reflect(new THREE.Vector3(1, 0, 0));
-        object.direction.reflect(new THREE.Vector3(0, 1, 0));
+        //FROM: https://www.gamasutra.com/view/feature/131424/pool_hall_lessons_fast_accurate_.php?page=3
+        let myCenter = this.cube.localToWorld(new THREE.Vector3(this.cube.position.x, this.cube.position.y, this.cube.position.z));
+        let objectCenter = this.cube.localToWorld(new THREE.Vector3(object.cube.position.x, object.cube.position.y, object.cube.position.z));
+
+        let n = myCenter.sub(objectCenter);
+        n.normalize();
+        let a1 = this.direction.clone().multiply(n);
+        let a2 = object.direction.clone().multiply(n);
+        let t1 = a1.sub(a2);
+        t1.multiplyScalar(2);
+        t1.divideScalar(this.width + object.width); //exchanging size for mass
+        let optimizedP = t1;
+
+        let t2 = this.direction.clone().sub(optimizedP.clone());
+        t2.multiplyScalar(object.width);
+        t2.multiply(n);
+        this.direction = t2.normalize();
+
+        let t3 = this.direction.clone().add(optimizedP.clone());
+        t3.multiplyScalar(object.width);
+        t3.multiply(n);
+        this.direction = t3.normalize();
       }
     }
   }
