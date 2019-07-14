@@ -11,18 +11,16 @@
     {
       "key": "scout",
       "sprite": "ships/1/scout",
-      "speed": 3,
-      "turnAngleSpeed": 2
+      "speed": 5,
+      "turnAngleSpeed": 0.5
     },
     {
       "key": "warbird",
-      "sprite": "ships/3/warbird",
       "speed": 1,
       "turnAngleSpeed": 1
     },
     {
       "key": "trader",
-      "sprite": "ships/2/trader",
       "speed": 2,
       "turnAngleSpeed": 1.5
     }

@@ -7,6 +7,7 @@ class GameModel {
     window.program = this;
     this.document = document;
     this.clickables = [];
+    this.loadingManager = new THREE.LoadingManager();
 
     this.document.addEventListener(
       "mousedown",
@@ -43,7 +44,7 @@ class GameModel {
     };
 
     var render = function (game) {
-      game.renderer.render(game.scene, game.camera);
+      game.renderer.render(window.program.scene, window.program.camera);
     };
 
     this.renderer.setAnimationLoop(() => {
@@ -64,17 +65,21 @@ class GameModel {
   }
 
   onGameStart() {
-
-    this.currentSector = new Sector();
-    this.currentSector.init();
-
-    this.playerShip = Ship.assemble({
-      "key": "scout",
-      "sprite": "ships/1/scout",
-      "speed": 5,
-      "turnAngleSpeed": 0.5
+    var loader = new THREE.FileLoader(this.loadingManager);
+    loader.load('app/programs/spaceTrader/gameData/gameData.json', (data) => {
+      this.gameStart(data);
     });
+  }
 
-    this.playerShip.init();
+  gameStart(data) {
+
+    window.program.gameData = JSON.parse(data);
+
+    window.program.currentSector = new Sector();
+    window.program.currentSector.init();
+
+    let tempShip = Ship.assemble(window.program.gameData.ships[0]);
+    tempShip.init();
+    this.playerShip = tempShip;
   }
 }

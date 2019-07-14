@@ -25,7 +25,7 @@ class Sector extends Container {
     }
 
     this.minables = [];
-    const minableAmount = 70;
+    const minableAmount = 50;
     for (let i = 0; i < minableAmount; i++) {
       let mineable = new Mineable();
       mineable.init();
@@ -33,7 +33,7 @@ class Sector extends Container {
       this.drawables.push(mineable);
     }
 
-    setInterval(this.doChecks.bind(this), 100);
+    setInterval(this.doChecks.bind(this), 1);
   }
 
   move() {

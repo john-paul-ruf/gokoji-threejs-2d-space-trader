@@ -5,8 +5,8 @@ class Mineable extends Drawable {
 
   init() {
    
-    this.height = 64;
-    this.width = 64;
+    this.height = 128;
+    this.width = 128;
 
     this.color = Config.mineableColor;
     this.borderColor = Config.mineableBorder;
@@ -76,20 +76,21 @@ class Mineable extends Drawable {
 
           let t2 = this.direction.clone().sub(optimizedP.clone());
           t2.multiply(n);
-
+          t2.multiplyScalar(-1);
 
           let t3 = this.direction.clone().add(optimizedP.clone());
           t3.multiply(n);
+          t3.multiplyScalar(-1);
 
-          object.direction = t3.normalize();
-          this.direction = t2.normalize();
+          object.direction = t2.normalize();
+          this.direction = t3.normalize();
 
           let tempSpeed = this.speed;
           this.speed = object.speed;
           object.speed = tempSpeed;
 
           this.colisionTimer = Config.colisionTimeoutMax;
-          this.object.colisionTimer = Config.colisionTimeoutMax;
+          object.colisionTimer = Config.colisionTimeoutMax;
         }
       });
     }

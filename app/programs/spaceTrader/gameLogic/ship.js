@@ -6,6 +6,7 @@ class Ship extends Drawable {
   init() {
     this.width = 32;
     this.height = 32;
+    this.dt = 0;
     super.init();
   }
 

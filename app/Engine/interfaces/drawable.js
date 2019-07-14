@@ -40,5 +40,6 @@ class Drawable {
 
     this.cube = outerCube;
     window.program.scene.add(outerCube);
+    this.cube.updateMatrix();
   }
 };
