@@ -73,12 +73,12 @@ class GameModel {
 
   gameStart(data) {
 
-    window.program.gameData = JSON.parse(data);
+    this.gameData = JSON.parse(data);
 
-    window.program.currentSector = new Sector();
-    window.program.currentSector.init();
+    this.currentSector = Sector.assemble(this.gameData.sector);
+    this.currentSector.init();
 
-    let tempShip = Ship.assemble(window.program.gameData.ships[0]);
+    let tempShip = Ship.assemble(this.gameData.ships[0]);
     tempShip.init();
     this.playerShip = tempShip;
   }

@@ -3,8 +3,8 @@ class Mineable extends Drawable {
     super();
   }
 
-  init() {
-   
+  init(sector) {
+
     this.height = 128;
     this.width = 128;
 
@@ -12,7 +12,7 @@ class Mineable extends Drawable {
     this.borderColor = Config.mineableBorder;
 
     this.borderWidth = 6;
-    this.randomizeMinable();
+    this.randomizeMinable(sector);
 
     this.rotationAxis = new THREE.Vector3(0, 0, 1);
     this.rotationAngle = MathHelper.random(0.05, -0.05);
@@ -21,30 +21,31 @@ class Mineable extends Drawable {
     super.init();
   }
 
-  randomizeMinable() {
-    this.y = MathHelper.random(2500, -2500);
-    this.x = MathHelper.random(2500, -2500);
+  randomizeMinable(sector) {
+    this.y = MathHelper.random(sector.sectorSize / 2, -sector.sectorSize / 2);
+    this.x = MathHelper.random(sector.sectorSize / 2, -sector.sectorSize / 2);
     this.z = 0;
     this.speed = MathHelper.random(5, 3);
     this.direction = new THREE.Vector3(Math.random(), Math.random(), 0);
   }
 
-  move() {
+  move(mineables) {
     let x = this.cube.position.x + this.direction.x * this.speed;
     let y = this.cube.position.y + this.direction.y * this.speed;
     let rotObjectMatrix = new THREE.Matrix4();
     rotObjectMatrix.makeRotationAxis(this.rotationAxis, this.rotationAngle);
     this.cube.matrix.multiply(rotObjectMatrix);
     this.cube.rotation.setFromRotationMatrix(this.cube.matrix);
-    this.cube.position.set(x, y, 0);
 
-    if (this.colisionTimer > 0) {
-      this.colisionTimer --;
+    if (_.every(mineables, m => { return m.doIntersect(this) === false; })) {
+      this.cube.position.set(x, y, 0);
+    } else {
+      this.move();
     }
   }
 
   doIntersect(object) {
-    if (this !== object && this.colisionTimer >= 0 && object.colisionTimer >= 0) {
+    if (this !== object) {
 
       const localPoints = [];
       let localBox = new THREE.Box2();
@@ -53,7 +54,6 @@ class Mineable extends Drawable {
           localPoints.push(this.cube.localToWorld(new THREE.Vector3(v.x, v.y, v.z)));
         });
       localBox.setFromPoints(localPoints);
-      localBox.expandByScalar(20);
 
       const objectPoints = [];
       _.forEach(object.cube.geometry.vertices,
@@ -77,24 +77,18 @@ class Mineable extends Drawable {
 
           let t2 = this.direction.clone().sub(optimizedP.clone());
           t2.multiply(n);
-          t2.multiplyScalar(-1);
 
           let t3 = this.direction.clone().add(optimizedP.clone());
           t3.multiply(n);
-          t3.multiplyScalar(-1);
 
-          object.direction = t2.normalize();
-          this.direction = t3.normalize();
+          object.direction = t3.normalize();
+          this.direction = t2.normalize();
 
-          let tempSpeed = this.speed;
-          this.speed = object.speed;
-          object.speed = tempSpeed;
-
-          this.colisionTimer = Config.colisionTimeoutMax;
-          object.colisionTimer = Config.colisionTimeoutMax;
+          return true;
         }
       });
     }
+    return false;
   }
 
   doBoundsCheck(max, min) {

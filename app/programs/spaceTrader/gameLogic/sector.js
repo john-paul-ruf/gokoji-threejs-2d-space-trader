@@ -7,8 +7,8 @@ class Sector extends Container {
     this.color = Config.menuBackground;
     this.x = 0;
     this.y = 0;
-    this.width = 5000;
-    this.height = 5000;
+    this.width = this.sectorSize;
+    this.height = this.sectorSize;
     this.borderWidth = 5;
     this.borderColor = Config.menuBorders;
 
@@ -16,41 +16,43 @@ class Sector extends Container {
 
 
     this.stars = [];
-    const starAmount = 500;
+    const starAmount = this.numberOfStars;
     for (let i = 0; i < starAmount; i++) {
       let star = new Star();
-      star.init();
+      star.init(this);
       this.stars.push(star);
       this.drawables.push(star);
     }
 
     this.minables = [];
-    const minableAmount = 50;
+    const minableAmount = MathHelper.random(this.maxMineables, this.minMineables);
     for (let i = 0; i < minableAmount; i++) {
       let mineable = new Mineable();
-      mineable.init();
+      mineable.init(this);
       this.minables.push(mineable);
       this.drawables.push(mineable);
     }
 
-    setInterval(this.doChecks.bind(this), 1);
+    setInterval(this.doChecks.bind(this), 10);
   }
 
   move() {
     _.forEach(this.minables, m => {
-      m.move();
+      m.move(this.minables);
     });
   }
 
   doChecks() {
     _.forEach(this.minables, m => {
-      m.doBoundsCheck(2500, -2500);
+      m.doBoundsCheck(this.sectorSize / 2, -this.sectorSize / 2);
     });
+  }
 
-    _.forEach(this.minables, m => {
-      _.forEach(this.minables, t => {
-        m.doIntersect(t);
-      });
-    });
+  static assemble(data) {
+
+    const sector = new Sector(data);
+    Object.assign(sector, data);
+    return sector;
+
   }
 }

@@ -1,12 +1,17 @@
 {
-  "Title": "",
-  "Start": "",
-  "Intro": "",
-  "HeroImage": "",
-  "StartingShipKey": "",
-  "HelpOn": "",
-  "sectorSize": 4000,
+  "title": "",
+  "start": "",
+  "intro": "",
+  "heroImage": "",
+  "startingShipKey": "",
+  "helpOn": "",
 
+  "sector": {
+    "sectorSize": 2500,
+    "numberOfStars": 50,
+    "maxMineables": 5,
+    "minMineables": 3
+  },
   "ships": [
     {
       "key": "scout",
