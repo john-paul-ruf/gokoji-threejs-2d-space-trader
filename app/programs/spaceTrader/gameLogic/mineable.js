@@ -53,6 +53,7 @@ class Mineable extends Drawable {
           localPoints.push(this.cube.localToWorld(new THREE.Vector3(v.x, v.y, v.z)));
         });
       localBox.setFromPoints(localPoints);
+      localBox.expandByScalar(20);
 
       const objectPoints = [];
       _.forEach(object.cube.geometry.vertices,
